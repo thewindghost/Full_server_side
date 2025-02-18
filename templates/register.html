@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Registration Form</h1>
+        <form method="POST">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required placeholder="Your username">
+
+            <label for="password">Password:</label>
+            <input type="text" id="password" name="password" required placeholder="Your password">
+
+            <label for="email">Email:</label>
+            <input type="text" id = "email" name="email" required placeholder="Your Email">
+
+            <label for="first_name">First Name:</label>
+            <input type="text" id="first_name" name="first_name" required placeholder="Your first name">
+
+            <label for="last_name">Last Name:</label>
+            <input type="text" id="last_name" name="last_name" required placeholder="Your last name">
+
+            <label for="number_phone">Phone Number:</label>
+            <input type="tel" id="number_phone" name="number_phone" required placeholder="Your phone number">
+
+            <label for="website_company">Website:</label>
+            <input type="url" id="website_company" name="website_company" placeholder="Your company website">
+
+            <label for="birth_year">Year of Birth:</label>
+            <input type="number" id="birth_year" name="birth_year" min="1900" max="2023" required placeholder="Your birth year">
+
+            <button type="submit">Register</button>
+        </form>
+
+        {% if error is defined %}
+            <p style="color: red;">Error: {{ error }}</p>
+        {% endif %}
+        {% if success is defined %}
+            <p style="color: greenyellow;">Success: {{ success }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

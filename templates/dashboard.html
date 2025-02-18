@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Internal CSS -->
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Tiêu đề -->
+        <h1>Dashboard</h1>
+        
+        <!-- Thông tin người dùng -->
+        <div class="user-info">
+            <h2>
+                <span class="material-icons"></span> Welcome Back <span class="username">{{ username }}</span>!
+            </h2>
+            <p><strong>Status:</strong> <span class="status-active">Active</span></p>
+        </div>        
+        
+        <!-- Thông tin tài chính -->
+        <div class="finance-info">
+            <p>
+                <span class="material-icons">account_balance</span> Account balance: $1,250.75
+            </p>
+            <p>
+                <span class="material-icons">history</span> Last Transaction: $50.00 (Withdrawn)
+            </p>
+            <p>
+                <span class="material-icons">pending</span> Pending Transactions: $200.00
+            </p>
+        </div>
+
+        <!-- Liên kết điều hướng -->
+        <ul class="navigation-links">
+            <li>
+                <a href="/my-profile">
+                    <span class="material-icons">person</span> Your Profile
+                </a>
+            </li>
+            <li>
+                <a href="/settings">
+                    <span class="material-icons">settings</span> Settings
+                </a>
+            </li>
+            <li>
+                <a href="/update-balance">
+                    <span class="material-icons">update balance</span> Update Balance
+                </a>
+            </li>
+            <li>
+                <a href="/logout">
+                    <span class="material-icons">logout</span> Logout
+                </a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

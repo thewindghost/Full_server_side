@@ -1,0 +1,252 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #555;
+    color: #333;
+    line-height: 1.6;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+
+/* Main container for the form */
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Header */
+h1 {
+    text-align: center;
+    color: #4CAF50;
+    font-size: 28px;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="password"], /* Thêm trường password */
+input[type="tel"],
+input[type="number"],
+input[type="url"],
+input[type="email"] {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #ccc;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus, /* Thêm focus cho password */
+input[type="tel"]:focus,
+input[type="number"]:focus,
+input[type="url"]:focus {
+    border-color: #4CAF50;
+    background-color: #fff; /* Đổi nền trắng khi focus */
+    outline: none;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+}
+
+/* Form Labels */
+label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #555;
+}
+
+/* Button Styles */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button:active {
+    background-color: #388e3c;
+}
+
+/* Error Message Styling */
+p[style="color: red;"] {
+    font-size: 14px;
+    color: red;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Success Message Styling */
+p[style="color: green;"] {
+    font-size: 14px;
+    color: green;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        margin: 10px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    input[type="text"],
+    input[type="password"], /* Responsive password */
+    input[type="tel"],
+    input[type="number"],
+    input[type="url"] {
+        padding: 12px;
+    }
+
+    button {
+        padding: 12px;
+    }
+}
+/* Dashboard Container Styles */
+.dashboard-container {
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    text-align: left;
+    max-width: 700px;
+    margin: auto;
+    line-height: 1.8;
+}
+
+/* Header for Dashboard */
+.dashboard-container h1 {
+    color: #4CAF50;
+    font-size: 26px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* User Information Section */
+.dashboard-container p {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+.dashboard-container p span {
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+/* Links Styles */
+.dashboard-container a {
+    text-decoration: none;
+    color: #4CAF50;
+    font-size: 15px;
+    font-weight: bold;
+    display: inline-block;
+    margin: 5px 0;
+    transition: color 0.3s ease;
+}
+
+.dashboard-container a:hover {
+    color: #388e3c;
+    text-decoration: underline;
+}
+
+/* Update Balance Form */
+.update-balance-form {
+    margin-top: 20px;
+}
+
+.update-balance-form input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    transition: border-color 0.3s ease;
+}
+
+.update-balance-form input[type="number"]:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+.update-balance-form button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.update-balance-form button:hover {
+    background-color: #45a049;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard-container {
+        padding: 20px;
+    }
+
+    .dashboard-container h1 {
+        font-size: 22px;
+    }
+
+    .dashboard-container p {
+        font-size: 14px;
+    }
+
+    .update-balance-form input[type="number"],
+    .update-balance-form button {
+        font-size: 14px;
+        padding: 10px;
+    }
+}

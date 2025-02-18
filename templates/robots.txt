@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /admin-panel-131315315211/
+Disallow: CTB{SomE-ThinG..} (flag1)
+
+User-agent: *
+allow: /
+allow: /register/
+allow: /login/
+allow: /user/
