@@ -6,7 +6,7 @@ init()
 
 base_url = "https://target.com/"
 payloads = "wordlists.txt"
-file_extensions = ["txt", "html", "php", "aspx", "zip", "tar", "json", "js", "md"]
+file_extensions = ["txt", "html", "php", "aspx", "zip", "tar", "json", "js", "md", "tar.gz", "bak", "old", "swp", "tmp"]
 
 def wordlists(lists):
     if os.path.exists(lists):
