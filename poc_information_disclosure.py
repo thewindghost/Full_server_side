@@ -4,9 +4,9 @@ from colorama import init, Fore
 
 init()
 
-base_url = "http://192.168.1.164:4100/"
+base_url = "https://target.com/"
 payloads = "directory.txt"
-file_extensions = ["txt", "html", "php", "asp"]
+file_extensions = ["txt", "html", "php", "aspx", "zip", "tar", "json", "js", "md",]
 
 def wordlists(lists):
     if os.path.exists(lists):
