@@ -5,7 +5,7 @@ from colorama import init, Fore
 init()
 
 base_url = "https://target.com/"
-payloads = "directory.txt"
+payloads = "wordlists.txt"
 file_extensions = ["txt", "html", "php", "aspx", "zip", "tar", "json", "js", "md"]
 
 def wordlists(lists):
@@ -21,7 +21,7 @@ def brute_force_directory(base_url, wordlists, file_extensions):
             response = requests.get(url)
             
             if response.status_code == 200:
-                print(Fore.WHITE + f"Found directory: {url} " + Fore.GREEN + f"(status: {response.status_code})")
+                print(Fore.WHITE + f"Found File: {url} " + Fore.GREEN + f"(status: {response.status_code})")
             elif response.status_code in [301, 302]:
                 print(Fore.WHITE + f"Redirected : {url} " + Fore.YELLOW + f"(status: {response.status_code})")
 
