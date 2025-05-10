@@ -1,29 +1,48 @@
 import requests
 import os
 from colorama import init, Fore
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
-init()
+init(autoreset=True)
 
-base_url = "https://target.com/"
+base_url = "https://targets.com/"
 payloads = "wordlists.txt"
-file_extensions = ["txt", "html", "php", "aspx", "zip", "tar", "json", "js", "md", "tar.gz", "bak", "old", "swp", "tmp", "log", "logs", "xml", "conf", "config", "require", "requirement", "cfm", "asa", "asax", "pub", "ca", "keys", "key", "htm", "mysql", "sql", "sql.bak", "sql.gz", "sql.zip", "sql~", "mf", "ini", "page", "swf", "reg", "bz2", "db", "readme", "LOG", "dll", "1", "cgi", "pl", "perl", "error", "access", "backend.log", "wadl", "wci", "local", "pgsql", "MF", "passwd"]
+file_extensions = ["txt", "zip", "html", "php", "aspx", "tar", "tar.gz", "bak", "old"]
+MAX_THREADS = 20
 
 def wordlists(lists):
     if os.path.exists(lists):
         with open(lists, "r") as file:
             return file.read().splitlines()
+    else:
+        print(Fore.RED + f"[!] File Not Found: {lists}")
+        return []
 
-def brute_force_directory(base_url, wordlists, file_extensions):
-    for dirname in wordlists:
-        for format_file in file_extensions:
+def check_url(base_url, dirname, format_file):
+    url = base_url.rstrip("/") + "/" + dirname + "." + format_file
 
-            url = os.path.join(base_url, dirname + "." + format_file)
-            response = requests.get(url)
-            
-            if response.status_code == 200:
-                print(Fore.WHITE + f"Found File: {url} " + Fore.GREEN + f"(status: {response.status_code})")
-            elif response.status_code in [301, 302]:
-                print(Fore.WHITE + f"Redirected : {url} " + Fore.YELLOW + f"(status: {response.status_code})")
+    try:
+        response = requests.get(url, timeout=5)
+        code = response.status_code
+
+        if code == 200:
+            print(Fore.WHITE + f"Found File: {url} " + Fore.GREEN + f"(status: {code})")
+        elif code in [301, 302]:
+            print(Fore.WHITE + f"Redirected : {url} " + Fore.YELLOW + f"(status: {code})")
+    except:
+        pass
+
+def fuzzing_file(base_url, wordlists, file_extensions):
+    tasks = []
+
+    with ThreadPoolExecutor(max_workers=MAX_THREADS) as executor:
+        for dirname in wordlists:
+            for format_file in file_extensions:
+                tasks.append(executor.submit(check_url, base_url, dirname, format_file))
+
+        for _ in as_completed(tasks):
+            pass
 
 file = wordlists(payloads)
-brute_force_directory(base_url, file, file_extensions)
+if file:
+    fuzzing_file(base_url, file, file_extensions)
