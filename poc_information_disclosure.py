@@ -24,7 +24,7 @@ async def check_url(sem, session, dirname, ext):
         try:
             async with session.get(url, allow_redirects=False) as resp:
                 if resp.status == 200:
-                    print(Fore.GREEN + f"[+] Found: {url} (200)")
+                    print(Fore.GREEN + f"[+] Found: {dirname}.{ext} (200)")
         except Exception:
 
             pass
