@@ -23,13 +23,10 @@ def check_url(base_url, dirname, format_file):
 
     try:
         response = requests.get(url, timeout=5)
-        code = response.status_code
-
-        if code == 200:
+        if response.status_code == 200:
             print(Fore.WHITE + f"Found File: {url} " + Fore.GREEN + f"(status: {code})")
-        elif code in [301, 302]:
-            print(Fore.WHITE + f"Redirected : {url} " + Fore.YELLOW + f"(status: {code})")
-    except:
+            
+    except requests.RequestException:
         pass
 
 def fuzzing_file(base_url, wordlists, file_extensions):
