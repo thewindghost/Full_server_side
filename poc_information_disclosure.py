@@ -5,41 +5,52 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 init(autoreset=True)
 
-base_url = "https://targets.com/"
+base_url = "https://upload.koinbase.cyberjutsu-lab.tech/"
 payloads = "wordlists.txt"
 file_extensions = ["txt", "zip", "html", "php", "aspx", "tar", "tar.gz", "bak", "old"]
 MAX_THREADS = 20
 
-def wordlists(lists):
-    if os.path.exists(lists):
-        with open(lists, "r") as file:
-            return file.read().splitlines()
+def load_wordlists(path):
+    if os.path.exists(path):
+        
+        with open(path, "r") as f:
+            return f.read().splitlines()
+        
     else:
-        print(Fore.RED + f"[!] File Not Found: {lists}")
+        print(Fore.RED + f"[!] File Not Found: {path}")
         return []
 
-def check_url(base_url, dirname, format_file):
-    url = base_url.rstrip("/") + "/" + dirname + "." + format_file
-
+def check_url(base_url, dirname, ext):
+    url = f"{base_url.rstrip('/')}/{dirname}.{ext}"
     try:
-        response = requests.get(url, timeout=5)
-        if response.status_code == 200:
-            print(Fore.WHITE + f"Found File: {url} " + Fore.GREEN + f"(status: {code})")
+
+        resp = requests.get(url, timeout=5, allow_redirects=False, stream=True)
+        status = resp.status_code
+        resp.close()
+        if status == 200:
+            print(Fore.WHITE + f"Found File: {url} "
+                  + Fore.GREEN + f"(status: 200)")
             
-    except requests.RequestException:
+    except Exception:
         pass
 
 def fuzzing_file(base_url, wordlists, file_extensions):
-    tasks = []
-
+    
     with ThreadPoolExecutor(max_workers=MAX_THREADS) as executor:
-        for dirname in wordlists:
-            for format_file in file_extensions:
-                tasks.append(executor.submit(check_url, base_url, dirname, format_file))
-
-        for _ in as_completed(tasks):
+        
+        futures = [
+            executor.submit(check_url, base_url, name, ext)
+            for name in wordlists
+            for ext in file_extensions
+        ]
+        
+        for _ in as_completed(futures):
             pass
 
-file = wordlists(payloads)
-if file:
-    fuzzing_file(base_url, file, file_extensions)
+if __name__ == "__main__":
+    
+    wl = load_wordlists(payloads)
+    
+    if wl:
+        fuzzing_file(base_url, wl, file_extensions)
+        print(Fore.CYAN + "🟢 Scan complete!")
